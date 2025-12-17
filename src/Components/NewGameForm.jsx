@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import TextInput from "./TextInput";
 
 NewGameForm.PropTypes = {
-    addGame: PropTypes.func
-}
+  addGame: PropTypes.func,
+};
 
 function NewGameForm({ addGame }) {
   // ==> criando States
@@ -21,20 +21,11 @@ function NewGameForm({ addGame }) {
 
   return (
     <form onSubmit={handleSubmit}>
-        <TextInput
-        value={title}
-        setValue={setTitle}
-        /> 
+      <TextInput label="Titulo" value={title} setValue={setTitle} />
       <div>
-        <label htmlFor="cover">Capa:</label>
-        <input
-          type="text"
-          id="cover"
-          value={cover}
-          onChange={(ev) => setCover(ev.target.value)}
-        />
+        <TextInput label="Capa" value={cover} setValue={setCover} />
       </div>
-      <button>Adicionar</button>
+      <button type="submit">Adicionar à biblioteca</button>
     </form>
   );
 }

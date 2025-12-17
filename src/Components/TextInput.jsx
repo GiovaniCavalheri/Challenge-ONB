@@ -1,18 +1,20 @@
 import PropTypes from "prop-types";
 
 TextInput.PropTypes = {
-    value: PropTypes.string, 
-    setValue: PropTypes.func
-}
+  id: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.string,
+  setValue: PropTypes.func,
+};
 
-function TextInput({ value, setValue }) {
-
+function TextInput({ id, label, value, setValue }) {
   return (
     <div>
-      <label htmlFor="title">Título:</label>
+      <label htmlFor={id}>{label}</label>
       <input
         type="text"
-        id="title"
+        id={id}
+        name={id}
         value={value}
         onChange={(ev) => setValue(ev.target.value)}
       />

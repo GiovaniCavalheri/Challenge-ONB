@@ -1,15 +1,15 @@
 import { useState } from "react";
 import Game from "./Components/Game";
+import NewGameForm from "./Components/newGameForm";
 
 function App() {
-  // ==> criando States
+
   const [games, setGames] = useState(() => {
     const storedGames = localStorage.getItem("obc-game-lib");
     if (!storedGames) return [];
     return JSON.parse(storedGames);
   });
-  const [title, setTitle] = useState("");
-  const [cover, setCover] = useState("");
+
 
   // ==> Function para adicionar os games
   const addGame = ({ title, cover }) => {
@@ -31,37 +31,11 @@ function App() {
     });
   };
 
-  // ==> Function submissao do form
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-    addGame({ title, cover });
-    setTitle("");
-    setCover("");
-  };
+
   return (
     <div className="app">
       <h1>Biblioteca de Jogos</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Título:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(ev) => setTitle(ev.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="cover">Capa:</label>
-          <input
-            type="text"
-            id="cover"
-            value={cover}
-            onChange={(ev) => setCover(ev.target.value)}
-          />
-        </div>
-        <button>Adicionar</button>
-      </form>
+      <NewGameForm addGame={addGame} />
       <div className="games">
         {games.map((game) => (
           <Game 
